@@ -11,15 +11,15 @@ export const MenuBar = ({ uid }: { uid: string }) => {
       <div>
         <Image src="/twitter.jpg" alt="twitter" width={50} height={50} />
       </div>
-      <Link href="" className="flex gap-3 p-2 items-center hover:bg-gray-600 rounded-3xl">
+      <Link href={`http://localhost:3000/${uid}/posts/index`} className="flex gap-3 p-2 items-center hover:bg-gray-600 rounded-3xl">
         <IoHomeOutline className="text-white" />
         <h2 className="text-white text-[25px]">Home</h2>
       </Link>
-      <Link href="" className="flex gap-3 p-2 items-center hover:bg-gray-600 rounded-3xl">
+      <Link href={`http://localhost:3000/${uid}/posts/bookMark`} className="flex gap-3 p-2 items-center hover:bg-gray-600 rounded-3xl">
         <FaRegBookmark className="text-white" />
         <h2 className="text-white text-[25px]">Bookmark</h2>
       </Link>
-      <Link href="" className="flex gap-3 p-2 items-center hover:bg-gray-600 rounded-3xl">
+      <Link href={`http://localhost:3000/${uid}/user/show`} className="flex gap-3 p-2 items-center hover:bg-gray-600 rounded-3xl">
         <CgProfile className="text-white" />
         <h2 className="text-white text-[25px]">Profile</h2>
       </Link>
@@ -27,7 +27,7 @@ export const MenuBar = ({ uid }: { uid: string }) => {
         <BiLogOut className="text-white" />
         <h2 className="text-white text-[25px]">Log out</h2>
       </Link>
-      <Link href={`/${uid}/posts/new`} className="inline-block px-5 py-2.5 bg-blue-500 text-white rounded-3xl text-center mb-5 no-underline hover:bg-blue-700">
+      <Link href={`http://localhost:3000/${uid}/posts/new`} className="inline-block px-5 py-2.5 bg-blue-500 text-white rounded-3xl text-center mb-5 no-underline hover:bg-blue-700">
         Post
       </Link>
     </div>
