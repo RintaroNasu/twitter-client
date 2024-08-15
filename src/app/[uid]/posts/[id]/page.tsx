@@ -9,15 +9,15 @@ export default function Page() {
   const id = params.id;
   const [post, setPost] = useState<Post>();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await fetch(`http://localhost:3001/api/v1/posts/${id}`);
-      const post: Post = await res.json();
-      setPost(post);
-      console.log(post);
-    };
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const res = await fetch(`http://localhost:3001/api/v1/posts/${id}`);
+  //     const post: Post = await res.json();
+  //     setPost(post);
+  //     console.log(post);
+  //   };
+  //   fetchData();
+  // }, []);
   return (
     <>
     <div>
