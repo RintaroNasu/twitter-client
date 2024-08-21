@@ -1,4 +1,9 @@
+"use client";
+
+import { createPost } from "@/api/posts";
 import { Modal } from "@/components/Modal";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 
 type Props = {
@@ -7,6 +12,14 @@ type Props = {
 };
 
 export const NewModal = (props: Props) => {
+  const [post, setPost] = useState("");
+  const handlePostSubmit = async () => {
+    await createPost(post).then(() => {
+      setPost("");
+      window.location.reload();
+    });
+  };
+  const onChangePostSubmit = (event: React.ChangeEvent<HTMLInputElement>) => setPost(event.target.value);
   return (
     <>
       <Modal className="w-[700px] h-[300px] bg-black" onClose={props.onClose} isOpen={props.isOpen}>
@@ -15,11 +28,13 @@ export const NewModal = (props: Props) => {
             <RxCross2 className="text-white font-bold" />
           </div>
           <div className="text-white text-[20px] font-bold">投稿</div>
-          <button className="rounded-3xl bg-white p-2 font-bold hover:bg-gray-400">Save</button>
+          <button className="rounded-3xl bg-white p-2 font-bold hover:bg-gray-400" onClick={handlePostSubmit}>
+            Save
+          </button>
         </div>
         <div className="flex flex-col gap-7">
           <div className="">
-            <input placeholder="What is happening?!" className="py-3 w-full  bg-black px-2" />
+            <input placeholder="What is happening?!" type="text" value={post} onChange={onChangePostSubmit} className="py-3 w-full  bg-black px-2 text-white" />
           </div>
         </div>
       </Modal>
