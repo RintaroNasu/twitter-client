@@ -6,6 +6,7 @@ import { useParams } from "next/navigation";
 import { FaSearch } from "react-icons/fa";
 import { EditModal } from "../edit/EditModal";
 import { useState } from "react";
+import { Search } from "@/components/Search";
 
 export default function Page() {
   const params = useParams();
@@ -45,12 +46,7 @@ export default function Page() {
             </div>
           </div>
         </div>
-        <div>
-          <div className="flex items-center mt-5">
-            <input placeholder="Search" className="rounded-3xl py-2 px-4 bg-gray-800" />
-            <FaSearch className="text-white" />
-          </div>
-        </div>
+        <Search />
       </div>
       <EditModal isOpen={isOpenModal} onClose={onCloseEditModal} />
     </>

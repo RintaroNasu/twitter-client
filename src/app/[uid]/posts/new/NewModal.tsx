@@ -2,7 +2,6 @@
 
 import { createPost } from "@/api/posts";
 import { Modal } from "@/components/Modal";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 

@@ -3,15 +3,16 @@
 import { Post } from "@/types/posts";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { FaSearch } from "react-icons/fa";
 import { useParams } from "next/navigation";
 import { MenuBar } from "@/components/MenuBar";
 import { getPosts } from "@/api/posts";
+import { Search } from "@/components/Search";
 
 export default function Index() {
   const params = useParams();
   const uid = params.uid.toString();
   const [posts, setPosts] = useState<Post[]>([]);
+  
   useEffect(() => {
     const fetchData = async () => {
       const posts = await getPosts();
@@ -28,19 +29,14 @@ export default function Index() {
           <div className="">
             {posts.map((post: Post) => (
               <Link key={post.id} href={`http://localhost:3000/${uid}/posts/${post.id}`} className="text-white no-underline">
-                <div className=" border-gray-700 border rounded-lg p-5">
+                <div className=" border-gray-700 border rounded-lg p-5 hover:bg-gray-700">
                   <p>{post.content}</p>
                 </div>
               </Link>
             ))}
           </div>
         </div>
-        <div>
-          <div className="flex items-center mt-5">
-            <input placeholder="Search" className="rounded-3xl py-2 px-4 bg-gray-800" />
-            <FaSearch className="text-white" />
-          </div>
-        </div>
+        <Search />
       </div>
     </>
   );
