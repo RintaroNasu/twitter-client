@@ -11,11 +11,12 @@ export const Search = () => {
   const uid = params.uid.toString();
   const [search, setSearch] = useState("");
   const [results, setResult] = useState<Post[]>([]);
+  const [isSearched, setIsSearched] = useState(false);
   const onChangePostSearch = (event: React.ChangeEvent<HTMLInputElement>) => setSearch(event.target.value);
   const onClickPostSearch = async (search: string) => {
     const searchData = await getPostsBySearch(search);
-    console.log(searchData);
     setResult(searchData);
+    setIsSearched(true);
   };
   return (
     <>
@@ -26,17 +27,18 @@ export const Search = () => {
             <FaSearch className="text-white" />
           </div>
         </div>
-        {results.length > 0 ? (
-          results.map((result: Post) => (
-            <Link key={result?.id} href={`http://localhost:3000/${uid}/posts/${result?.id}`} className="text-white no-underline">
-              <div className="border-gray-700 border rounded-lg p-5 hover:bg-gray-700">
-                <p className="text-white">{result?.content}</p>
-              </div>
-            </Link>
-          ))
-        ) : (
-          <div className="text-white">該当結果がありません</div>
-        )}
+        {isSearched &&
+          (results.length > 0 ? (
+            results.map((result: Post) => (
+              <Link key={result?.id} href={`http://localhost:3000/${uid}/posts/${result?.id}`} className="text-white no-underline">
+                <div className="border-gray-700 border rounded-lg p-5 hover:bg-gray-700">
+                  <p className="text-white">{result?.content}</p>
+                </div>
+              </Link>
+            ))
+          ) : (
+            <div className="text-white">該当結果がありません</div>
+          ))}
       </div>
     </>
   );
