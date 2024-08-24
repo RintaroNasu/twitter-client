@@ -1,7 +1,16 @@
+"use client";
+
 import Image from "next/image";
-import Link from "next/link";
+import Login from "./auth/Login/page";
+import { useSession } from "next-auth/react";
+import Logout from "./auth/Logout/page";
+import { useEffect } from "react";
 
 export default function Home() {
+  const { data: session, status } = useSession();
+  useEffect(() => {
+
+  })
   return (
     <>
       <div className="flex justify-center gap-11 items-center h-full">
@@ -11,10 +20,14 @@ export default function Home() {
         <div className="flex flex-col gap-11">
           <p className="text-white text-[80px] font-bold">すべての話題が、ここに</p>
           <p className="text-white text-[30px] font-bold">今すぐ参加しましょう。</p>
-          <div className="flex flex-col gap-4">
-            <Link href="auth/SignUp" className="bg-blue-400 w-[50%] text-white py-2 px-4 rounded-3xl hover:bg-blue-500">アカウントを作成</Link>
-            <Link href="auth/Login" className="bg-blue-400 w-[50%] text-white py-2 px-4 rounded-3xl hover:bg-blue-500">ログイン</Link>
-          </div>
+          {status === "authenticated" ? (
+            <div>
+              <p className="text-white">ようこそ、{session.user?.name}さん</p>
+              <Logout />
+            </div>
+          ) : (
+            <Login />
+          )}
         </div>
       </div>
     </>

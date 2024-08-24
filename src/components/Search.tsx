@@ -1,5 +1,5 @@
 "use client";
-import { getPostsBySearch } from "@/api/posts";
+import { getPostsBySearch } from "@/app/api/posts";
 import { Post } from "@/types/posts";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -21,12 +21,13 @@ export const Search = () => {
   return (
     <>
       <div>
-        <div className="flex items-center mt-5 gap-1">
+        <div className="flex items-center mt-5 mb-3 gap-1">
           <input placeholder="Search" className="rounded-3xl py-2 px-4 text-white bg-gray-800" value={search} onChange={onChangePostSearch} />
           <div className="hover:bg-gray-700 p-2" onClick={() => onClickPostSearch(search)}>
             <FaSearch className="text-white" />
           </div>
         </div>
+        <div className="border border-gray-700 text-white text-[15px] pl-3">Search for {search}</div>
         {isSearched &&
           (results.length > 0 ? (
             results.map((result: Post) => (
@@ -37,7 +38,7 @@ export const Search = () => {
               </Link>
             ))
           ) : (
-            <div className="text-white">該当結果がありません</div>
+            <div className="text-white text-[15px] pl-3 mt-2">該当結果がありません。</div>
           ))}
       </div>
     </>

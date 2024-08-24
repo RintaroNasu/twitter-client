@@ -23,10 +23,10 @@ export const EditModal = (props: Props) => {
         </div>
         <div className="flex flex-col gap-7">
           <div className="border border-gray-700">
-            <input placeholder="Name" className="py-3 w-full  bg-black" />
+            <input placeholder="Name" className="py-3 pl-2 w-full  bg-black" />
           </div>
           <div className="border border-gray-700">
-            <input placeholder="Bio" className="bg-black py-3 w-full" />
+            <input placeholder="Bio" className="bg-black pl-2 py-3 w-full" />
           </div>
         </div>
       </Modal>

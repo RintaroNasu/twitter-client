@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Post } from "@/types/posts";
 import { useParams } from "next/navigation";
-import { deletePost, getPost } from "@/api/posts";
+import { deletePost, getPost } from "@/app/api/posts";
 import { MenuBar } from "@/components/MenuBar";
 import { useRouter } from "next/navigation";
 import { Search } from "@/components/Search";

@@ -1,6 +1,6 @@
 "use client";
 
-import { createPost } from "@/api/posts";
+import { createPost } from "@/app/api/posts";
 import { Modal } from "@/components/Modal";
 import { useState } from "react";
 import { RxCross2 } from "react-icons/rx";
@@ -33,7 +33,7 @@ export const NewModal = (props: Props) => {
         </div>
         <div className="flex flex-col gap-7">
           <div className="">
-            <input placeholder="What is happening?!" type="text" value={post} onChange={onChangePostSubmit} className="py-3 w-full  bg-black px-2 text-white" />
+            <input placeholder="What is happening?!" type="text" value={post} onChange={onChangePostSubmit} className="py-3 w-full outline-none bg-black px-2 text-white" />
           </div>
         </div>
       </Modal>
