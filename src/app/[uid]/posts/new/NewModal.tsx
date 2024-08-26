@@ -8,14 +8,17 @@ import { RxCross2 } from "react-icons/rx";
 type Props = {
   isOpen: boolean;
   onClose: () => void;
+  uid: string;
 };
 
 export const NewModal = (props: Props) => {
   const [post, setPost] = useState("");
   const handlePostSubmit = async () => {
-    await createPost(post).then(() => {
+    await createPost(post, props.uid).then(() => {
+      console.log(post)
+      console.log(props.uid)
       setPost("");
-      window.location.reload();
+      // window.location.reload();
     });
   };
   const onChangePostSubmit = (event: React.ChangeEvent<HTMLInputElement>) => setPost(event.target.value);

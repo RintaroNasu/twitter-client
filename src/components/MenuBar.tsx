@@ -47,7 +47,7 @@ export const MenuBar = ({ uid }: { uid: string }) => {
           Post
         </div>
       </div>
-      <NewModal isOpen={isOpenModal} onClose={onCloseEditModal} />
+      <NewModal isOpen={isOpenModal} onClose={onCloseEditModal} uid={uid}/>
     </>
   );
 };

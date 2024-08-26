@@ -10,14 +10,15 @@ export const getPost = async (id: string) => {
   return post;
 };
 
-export const createPost = async (post: string) => {
+export const createPost = async (post: string, uid: string) => {
   const res = await fetch("http://localhost:4000/api/v1/posts", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ content: post }),
+    body: JSON.stringify({ content: post, user_id: uid }),
   });
+
   const data = await res.json();
   console.log(data);
 };
@@ -39,5 +40,5 @@ export const getPostsBySearch = async (search: string) => {
     },
   });
   const data = await res.json();
-  return data
+  return data;
 };

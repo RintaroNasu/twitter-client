@@ -18,12 +18,11 @@ export default function Index() {
   useEffect(() => {
     const fetchData = async () => {
       const posts = await getPosts();
+      console.log(posts);
       setPosts(posts);
     };
-
     fetchData();
   }, []);
-  console.log(session)
   return (
     <>
       <div className="flex justify-center gap-24 mt-4">
@@ -34,6 +33,7 @@ export default function Index() {
               <Link key={post.id} href={`http://localhost:3000/${uid}/posts/${post.id}`} className="text-white no-underline">
                 <div className=" border-gray-700 border rounded-lg p-5 hover:bg-gray-700 h-40">
                   <p>{post.content}</p>
+                  <p>{post.user.name}</p>
                 </div>
               </Link>
             ))}
