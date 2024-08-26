@@ -1,20 +1,15 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import type { DefaultSession } from 'next-auth'
 
-declare module 'next-auth' {
+declare module "next-auth" {
   interface Session {
-    user?: {
-      id: string
-    } & DefaultSession['user']
+    user: {
+      id: string | null;
+      name: string
+    };
   }
 }
 
-declare module "next-auth/jwt" {
-  interface JWT {
-    id: string
-  }
-}
 const handler = NextAuth({
   secret: process.env.NEXTAUTH_SECRET,
   providers: [
@@ -28,7 +23,7 @@ const handler = NextAuth({
       const provider = account?.provider;
       const name = user?.name;
       const email = user?.email;
-      const accountId = account?.id_token;
+      const userId = user.id;
       const res = await fetch(`http://localhost:4000/api/v1/auth/${provider}/callback`, {
         method: "POST",
         headers: {
@@ -38,11 +33,15 @@ const handler = NextAuth({
           provider,
           name,
           email,
-          accountId,
+          userId,
         }),
       });
-
-      return true;
+      console.log(res);
+      return res.ok;
+    },
+    async session({ session, token }) {
+      session.user.id = token.sub as string;
+      return Promise.resolve(session);
     },
   },
 });

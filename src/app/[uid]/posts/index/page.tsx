@@ -7,8 +7,10 @@ import { useParams } from "next/navigation";
 import { MenuBar } from "@/components/MenuBar";
 import { getPosts } from "@/app/api/posts";
 import { Search } from "@/components/Search";
+import { useSession } from "next-auth/react";
 
 export default function Index() {
+  const { data: session, status } = useSession();
   const params = useParams();
   const uid = params.uid.toString();
   const [posts, setPosts] = useState<Post[]>([]);
@@ -21,6 +23,7 @@ export default function Index() {
 
     fetchData();
   }, []);
+  console.log(session)
   return (
     <>
       <div className="flex justify-center gap-24 mt-4">

@@ -1,14 +1,24 @@
 "use client";
 
 import { signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function Logout() {
+  const router = useRouter();
   const { data: session, status } = useSession();
-  if (status == "authenticated") {
-    return (
-      <div onClick={() => signOut()} className="w-36 px-5 py-2.5 bg-blue-500 text-white rounded-3xl text-center no-underline hover:bg-blue-700 font-bold">
-        ログアウト
-      </div>
-    );
-  }
+  const handleLogout = async () => {
+    // try {
+    //   // サインアウト処理を実行
+    await signOut({ redirect: false });
+
+    // } catch (error) {
+    //   console.error("Logout failed:", error);
+    //   // エラーハンドリングを追加
+    // }
+  };
+  return (
+    <div onClick={handleLogout} className="text-white text-[25px]">
+      Logout
+    </div>
+  );
 }

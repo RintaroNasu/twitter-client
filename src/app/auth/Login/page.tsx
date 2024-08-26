@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import { useSession, signIn } from "next-auth/react";
 import { FcGoogle } from "react-icons/fc";
 
@@ -9,7 +9,6 @@ export default function Login() {
   if (status === "loading") {
     return <div>Loading...</div>;
   }
-
   if (status !== "authenticated") {
     return (
       <div>
