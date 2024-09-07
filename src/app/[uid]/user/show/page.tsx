@@ -7,8 +7,10 @@ import { FaSearch } from "react-icons/fa";
 import { EditModal } from "../edit/EditModal";
 import { useState } from "react";
 import { Search } from "@/components/Search";
+import { useSession } from "next-auth/react";
 
 export default function Page() {
+  const { data: session, status } = useSession();
   const params = useParams();
   const uid = params.uid.toString();
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -31,7 +33,7 @@ export default function Page() {
                 Edit profile
               </Link>
             </div>
-            <h2 className="text-white text-[25px] ml-5">name</h2>
+            <h2 className="text-white text-[25px] ml-5">{session?.user.name}</h2>
             <div className="ml-5 mb-8">
               <span className="text-white mr-4">
                 22<span className="text-gray-500">Following</span>
