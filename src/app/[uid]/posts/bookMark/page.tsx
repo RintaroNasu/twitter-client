@@ -3,7 +3,7 @@ import { MenuBar } from "@/components/MenuBar";
 import { Search } from "@/components/Search";
 import { useParams } from "next/navigation";
 
-export default function bookMark() {
+export default function BookMark() {
   const params = useParams();
   const uid = params.uid.toString();
   return (
