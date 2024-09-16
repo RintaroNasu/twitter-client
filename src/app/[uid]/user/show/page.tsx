@@ -1,16 +1,13 @@
 "use client";
 import { MenuBar } from "@/components/MenuBar";
 import Image from "next/image";
-import Link from "next/link";
 import { useParams } from "next/navigation";
-import { FaSearch } from "react-icons/fa";
-import { EditModal } from "../edit/EditModal";
 import { useState } from "react";
 import { Search } from "@/components/Search";
 import { useSession } from "next-auth/react";
 
 export default function Page() {
-  const { data: session, status } = useSession();
+  const { data: session, status} = useSession();
   const params = useParams();
   const uid = params.uid.toString();
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -29,9 +26,6 @@ export default function Page() {
               <div className="ml-5">
                 <Image src="/twitter.jpg" alt="twitter" width={100} height={50} />
               </div>
-              <Link href="" className="px-5 py-1.5 text-white h-10 rounded-3xl text-center mr-5 mt-3 border hover:bg-gray-700" onClick={isOpenEditModal}>
-                Edit profile
-              </Link>
             </div>
             <h2 className="text-white text-[25px] ml-5">{session?.user.name}</h2>
             <div className="ml-5 mb-8">
@@ -47,10 +41,12 @@ export default function Page() {
               <div className="text-white hover:bg-gray-700 hover:border-b-4 hover:border-b-blue-500 p-2">Likes</div>
             </div>
           </div>
+          <div>
+            {/* {session?.user.id}idの情報をバックエンドに送信してそのidの投稿を取得して表示*/}
+          </div>
         </div>
         <Search />
       </div>
-      <EditModal isOpen={isOpenModal} onClose={onCloseEditModal} />
     </>
   );
 }
