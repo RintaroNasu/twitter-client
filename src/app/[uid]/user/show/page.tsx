@@ -2,19 +2,28 @@
 import { MenuBar } from "@/components/MenuBar";
 import Image from "next/image";
 import { useParams } from "next/navigation";
-import { useState } from "react";
+import { use, useEffect, useState } from "react";
 import { Search } from "@/components/Search";
 import { useSession } from "next-auth/react";
+import { Post } from "@/types/posts";
+import Link from "next/link";
+import { getUserPosts } from "@/app/api/users";
 
 export default function Page() {
-  const { data: session, status} = useSession();
+  const { data: session, status } = useSession();
+  const [userPosts, setPosts] = useState<Post[]>([]);
   const params = useParams();
   const uid = params.uid.toString();
-  const [isOpenModal, setIsOpenModal] = useState(false);
-  const onCloseEditModal = () => setIsOpenModal(false);
-  const isOpenEditModal = () => {
-    setIsOpenModal(true);
-  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (session?.user.id) {
+        const userPosts = await getUserPosts(session?.user.id);
+        setPosts(userPosts);
+      }
+    };
+    fetchData();
+  }, []);
   return (
     <>
       <div className="flex justify-center gap-24 mt-4">
@@ -42,7 +51,13 @@ export default function Page() {
             </div>
           </div>
           <div>
-            {/* {session?.user.id}idの情報をバックエンドに送信してそのidの投稿を取得して表示*/}
+            {userPosts.map((post: Post) => (
+              <Link key={post.id} href={`http://localhost:3000/${uid}/posts/${post.id}`} className="text-white no-underline">
+                <div className=" border-gray-700 border rounded-lg p-5 hover:bg-gray-700 h-40">
+                  <p>{post.content}</p>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
         <Search />

@@ -9,3 +9,9 @@ export const handleEditUser = async (id: string, name:string) => {
   const user = res.json();
   return user;
 }
+
+export const getUserPosts = async (id: string) => {
+  const res = await fetch(`http://localhost:4000/api/v1/users/${id}/posts`);
+  const posts = res.json();
+  return posts;
+}
