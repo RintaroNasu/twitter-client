@@ -5,7 +5,7 @@ declare module "next-auth" {
   interface Session {
     user: {
       id: string | null;
-      name: string
+      name: string;
     };
   }
 }
@@ -18,6 +18,17 @@ const handler = NextAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? "",
     }),
   ],
+  cookies: {
+    state: {
+      name: `next-auth.state-token`,
+      options: {
+        httpOnly: true,
+        sameSite: "lax",
+        path: "/",
+        secure: process.env.NODE_ENV === "production", 
+      },
+    },
+  },
   callbacks: {
     async signIn({ user, account }) {
       const provider = account?.provider;
