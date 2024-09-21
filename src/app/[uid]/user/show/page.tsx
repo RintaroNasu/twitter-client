@@ -51,13 +51,14 @@ export default function Page() {
             </div>
           </div>
           <div>
-            {userPosts.map((post: Post) => (
-              <Link key={post.id} href={`http://localhost:3000/${uid}/posts/${post.id}`} className="text-white no-underline">
-                <div className=" border-gray-700 border rounded-lg p-5 hover:bg-gray-700 h-40">
-                  <p>{post.content}</p>
-                </div>
-              </Link>
-            ))}
+            {userPosts &&
+              userPosts.map((post: Post) => (
+                <Link key={post.id} href={`http://localhost:3000/${uid}/posts/${post.id}`} className="text-white no-underline">
+                  <div className=" border-gray-700 border rounded-lg p-5 hover:bg-gray-700 h-40">
+                    <p>{post.content}</p>
+                  </div>
+                </Link>
+              ))}
           </div>
         </div>
         <Search />
