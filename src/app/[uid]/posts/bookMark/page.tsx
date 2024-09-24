@@ -10,7 +10,9 @@ export default function BookMark() {
     <>
       <div className="flex justify-center gap-24 mt-4">
         <MenuBar uid={uid} />
-        <div className="w-[35vw] h-screen border-l-2 border-r-2 border-l-gray-700 border-r-gray-700"></div>
+        <div className="w-[35vw] h-screen border-l-2 border-r-2 border-l-gray-700 border-r-gray-700">
+          
+        </div>
         <Search />
       </div>
     </>

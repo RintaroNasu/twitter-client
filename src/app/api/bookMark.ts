@@ -11,7 +11,7 @@ export const postBookMark = async (id: string, uid: string) => {
 };
 
 export const deleteBookMark = async (id: string, uid: string) => {
-  const res = await fetch(`http://localhost:4000/api/v1/posts/${id}/bookMark/delete`, {
+  const res = await fetch(`http://localhost:4000/api/v1/${id}/bookMark/delete`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -20,4 +20,15 @@ export const deleteBookMark = async (id: string, uid: string) => {
   });
   const bookMark = res.json();
   return bookMark;
+};
+
+export const getUserBookMarks = async (uid: string) => {
+  const res = await fetch(`http://localhost:4000/api/v1/${uid}/bookMark/posts`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const bookMarks = res.json();
+  return bookMarks;
 };

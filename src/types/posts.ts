@@ -5,6 +5,7 @@ export interface Post {
   updated_at: string;
   user_id: string;
   user: User;
+  isBookMarked: boolean;
 }
 
 export interface User {
